@@ -125,7 +125,7 @@ const Experience: React.FC = () => {
             </div>
           ))}
         </div>
-
+{/* 
         <div className="mt-16 text-center">
           <a
             href="#"
@@ -133,7 +133,7 @@ const Experience: React.FC = () => {
           >
             Download Resume
           </a>
-        </div>
+        </div> */}
       </div>
     </section>
   );
