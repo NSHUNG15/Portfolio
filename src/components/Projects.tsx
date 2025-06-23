@@ -44,7 +44,7 @@ const Projects: React.FC = () => {
       title: 'Travel Golobe (Team)',
       description: 'A travel booking website that allows users to search for flights, hotels, and car rentals. Features include a responsive design, user authentication, and a modern UI.',
       image: 'https://images.pexels.com/photos/3888151/pexels-photo-3888151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      tags: ['React', 'Tyscript', 'PostgreSQL', 'API', 'Tailwind CSS'],
+      tags: ['React', 'TypeScript', 'PostgreSQL', 'API', 'Tailwind CSS'],
       demoUrl: 'https://travel-golobe.vercel.app/',
       githubUrl: '#',
       featured: true,
