@@ -1,6 +1,8 @@
 import React from 'react';
 import { User, Mail, MapPin, Calendar, FileText, Github, Facebook } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
+import avatar from '../img/avatar.jpg'; // Thêm dòng này ở đầu file
+
 
 const About: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
@@ -28,7 +30,7 @@ const About: React.FC = () => {
             <div className="aspect-[3/4] rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-800 max-h-[40rem] ">
               {/* This would be replaced with an actual image */}
               <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-gray-600 ">
-                <img src='./src/img/avatar.jpg' alt="Profile" className="object-cover w-full h-full" />
+              <img src={avatar} alt="Profile" className="object-cover w-full h-full" />
               </div>
             </div>
             
