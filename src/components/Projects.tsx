@@ -55,7 +55,7 @@ const Projects: React.FC = () => {
       description: 'A responsive portfolio website template for developers, built with modern design principles and animations.',
       image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       tags: ['React', 'Tailwind CSS', 'Framer Motion'],
-      demoUrl: 'https://portfolio-seven-peach-mziq5rl8dq.vercel.app',
+      demoUrl: 'https://portfolio-nsh.vercel.app',
       githubUrl: '#',
       featured: false,
     },

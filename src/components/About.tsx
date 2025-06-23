@@ -105,6 +105,8 @@ const About: React.FC = () => {
               </a>
               <a 
                 href="https://web.facebook.com/WONHUN15" 
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="p-2 text-gray-700 transition-colors duration-300 bg-gray-200 rounded-full dark:bg-gray-800 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-400"
                 aria-label="Facebook profile"
               >
