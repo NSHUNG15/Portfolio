@@ -34,7 +34,7 @@ const About: React.FC = () => {
               </div>
             </div>
             
-            <div className="absolute w-2/3 border-4 border-blue-600 rounded-lg -bottom-12 right-14 h-2/3 dark:border-blue-400 -z-10"></div>
+            <div className="absolute w-2/3 border-4 border-blue-600 rounded-lg lg:-bottom-12 -bottom-2 -right-2 lg:right-14 h-2/3 dark:border-blue-400 -z-10"></div>
           </div>
 
           <div>
