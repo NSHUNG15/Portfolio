@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
       className="relative flex items-center justify-center min-h-screen transition-colors duration-300 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
     >
       <div 
-        ref={ref}
+        ref={ref as React.RefObject<HTMLDivElement>}
         className="container flex flex-col items-center px-4 py-20 mx-auto text-center"
       >
         <div className={`transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>

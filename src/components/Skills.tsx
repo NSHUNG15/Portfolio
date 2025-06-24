@@ -45,7 +45,7 @@ const Skills: React.FC = () => {
   return (
     <section
       id="skills"
-      className="py-20 transition-colors duration-300 bg-gray-50 dark:bg-gray-800"
+      className="py-20 transition-colors duration-300 lg:min-h-[63rem] bg-gray-50 dark:bg-gray-800"
     >
       <div className="container px-4 mx-auto">
         <div className="mb-16 text-center">

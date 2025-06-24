@@ -10,7 +10,7 @@ const About: React.FC = () => {
   return (
     <section 
       id="about" 
-      className="py-20 transition-colors duration-300 bg-white dark:bg-gray-900"
+      className="py-20 lg:mb-[8rem] transition-colors duration-300 bg-white dark:bg-gray-900"
     >
       <div className="container px-4 mx-auto">
         <div className="mb-16 text-center">
@@ -29,12 +29,12 @@ const About: React.FC = () => {
           <div className="relative">
             <div className="aspect-[3/4] rounded-lg overflow-hidden bg-gray-200 dark:bg-gray-800 max-h-[40rem] ">
               {/* This would be replaced with an actual image */}
-              <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-gray-600 ">
-              <img src={avatar} alt="Profile" className="object-cover w-full h-full" />
+              <div className="absolute inset-0 items-center justify-center my-2 text-gray-400 dark:text-gray-600 ">
+              <img src={avatar} alt="Profile" className="object-cover lg:w-[85%] lg:h-[40rem] w-full h-full" />
               </div>
             </div>
             
-            <div className="absolute w-2/3 border-4 border-blue-600 rounded-lg -bottom-6 -right-6 h-2/3 dark:border-blue-400 -z-10"></div>
+            <div className="absolute w-2/3 border-4 border-blue-600 rounded-lg -bottom-12 right-14 h-2/3 dark:border-blue-400 -z-10"></div>
           </div>
 
           <div>
