@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
         {
           from_name: formData.name,
           from_email: formData.email,
-          subject: formData.subject,
+          subject: formData.subject || 'New Contact Message from Portfolio Website',
           message: formData.message,
         },
         USER_ID
