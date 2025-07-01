@@ -1,9 +1,11 @@
 import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
+import { useTranslation } from 'react-i18next';
 
 const Hero: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false });
+  const { t } = useTranslation();
 
   return (
     <section 
@@ -16,12 +18,12 @@ const Hero: React.FC = () => {
       >
         <div className={`transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h1 className="mb-6 text-4xl font-bold text-gray-800 md:text-6xl lg:text-7xl dark:text-white">
-            <span className="block">Hello, I'm</span>
+            <span className="block">{t('hero.greeting')}</span>
             <span className="text-blue-600 dark:text-blue-400">Nguyễn Sinh Hùng</span>
           </h1>
 
-          <h2 className="max-w-2xl mx-auto mb-8 text-xl text-gray-600 md:text-2xl lg:text-3xl dark:text-gray-300">
-            A passionate <span className="font-semibold text-purple-600 dark:text-purple-400">Frontend Developer</span> crafting beautiful digital experiences
+          <h2 className="max-w-3xl mx-auto mb-8 text-xl text-gray-600 md:text-2xl lg:text-3xl dark:text-gray-300">
+            {t('hero.description1')}<span className="font-semibold text-purple-600 dark:text-purple-400"> Frontend Developer</span> {t('hero.description2')}
           </h2>
 
           <div className="flex flex-col justify-center gap-4 mt-8 sm:flex-row">
@@ -29,13 +31,13 @@ const Hero: React.FC = () => {
               href="#projects"
               className="px-8 py-3 font-medium text-white transition-all duration-300 transform bg-blue-600 rounded-full hover:bg-blue-700 hover:scale-105"
             >
-              View My Work
+              {t('hero.btn_work')}
             </a>
             <a
               href="#contact"
               className="px-8 py-3 font-medium text-blue-600 transition-all duration-300 transform bg-transparent border-2 border-blue-600 rounded-full dark:border-blue-400 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 hover:scale-105"
             >
-              Contact Me
+              {t('hero.btn_contact')}
             </a>
           </div>
         </div>
@@ -46,7 +48,7 @@ const Hero: React.FC = () => {
             className="flex flex-col items-center text-gray-500 transition-colors duration-300 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
             aria-label="Scroll to About section"
           >
-            <span className="mb-2 text-sm">Scroll Down</span>
+            <span className="mb-2 text-sm">{t('hero.btn_down')}</span>
             <ArrowDown className="animate-bounce" size={24} />
           </a>
         </div>

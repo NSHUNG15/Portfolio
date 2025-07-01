@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "greeting": "Xin chào, tôi là",
+    "welcome": "Chào mừng đến với portfolio của tôi!",
+    "description1": "Tôi là một",
+    "description2": "đam mê chuyển hóa ý tưởng sáng tạo thành những trải nghiệm số mượt mà, phản hồi nhanh và thân thiện với người dùng",
+    "btn_work": "Xem công việc của tôi",
+    "btn_contact": "Liên hệ với tôi",
+    "btn_down": "Cuộn xuống"
+  },
+  "about": {
+    "title": "Về tôi",
+    "description": "Tôi là một lập trình viên đam mê..."
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "description": "Hãy liên hệ với tôi!"
+  },
+  "Home": "Trang chủ",
+  "About": "Về tôi",
+  "Skills": "Kỹ năng",
+  "Projects": "Dự án",
+  "Experience": "Kinh nghiệm",
+  "Contact": "Liên hệ",
+  "footer": {
+    "intro": "Một lập trình viên frontend đam mê tập trung vào việc tạo ra những trải nghiệm số đẹp mắt, hữu ích và giải quyết các vấn đề thực tế.",
+    "quickLinks": "Liên kết nhanh",
+    "contactInfo": "Thông tin liên hệ",
+    "copyright": "Đã đăng ký bản quyền."
+  }
+}

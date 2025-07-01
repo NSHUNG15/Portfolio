@@ -1,0 +1,35 @@
+{
+  "hero": {
+    "greeting": "Hello, I'm",
+    "welcome": "Welcome to my portfolio!",
+    "description1": "I’m a",
+    "description2": "passionate about turning creative ideas into smooth, responsive, and user-friendly digital experiences",
+    "btn_work": "View My Work",
+    "btn_contact": "Contact Me",
+    "btn_down": "Scroll Down"
+  },
+  "skills": {
+    "title": "Skills",
+    "description": "Download Resume"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I am a passionate developer..."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Feel free to reach out!"
+  },
+  "Home": "Home",
+  "About": "About",
+  "Skills": "Skills",
+  "Projects": "Projects",
+  "Experience": "Experience",
+  "Contact": "Contact",
+  "footer": {
+    "intro": "A passionate frontend developer focused on creating beautiful, functional digital experiences that solve real-world problems.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "copyright": "All rights reserved."
+  }
+}

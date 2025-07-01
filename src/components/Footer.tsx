@@ -1,7 +1,9 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -16,8 +18,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1 md:col-span-2">
             <h3 className="mb-4 text-2xl font-bold">Nguyễn Sinh Hùng</h3>
             <p className="max-w-md mb-6 text-gray-400">
-              A passionate frontend developer focused on creating beautiful, functional
-              digital experiences that solve real-world problems.
+              {t('footer.intro')}
             </p>
             <div className="flex gap-4">
               <a 
@@ -45,14 +46,14 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="mb-4 text-lg font-semibold">Quick Links</h4>
+            <h4 className="mb-4 text-lg font-semibold">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               <li>
                 <a 
                   href="#home" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
-                  Home
+                  {t('Home')}
                 </a>
               </li>
               <li>
@@ -60,7 +61,7 @@ const Footer: React.FC = () => {
                   href="#about" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
-                  About
+                  {t('About')}
                 </a>
               </li>
               <li>
@@ -68,7 +69,7 @@ const Footer: React.FC = () => {
                   href="#skills" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
-                  Skills
+                  {t('Skills')}
                 </a>
               </li>
               <li>
@@ -76,7 +77,7 @@ const Footer: React.FC = () => {
                   href="#projects" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
-                  Projects
+                  {t('Projects')}
                 </a>
               </li>
               <li>
@@ -84,7 +85,7 @@ const Footer: React.FC = () => {
                   href="#experience" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
-                  Experience
+                  {t('Experience')}
                 </a>
               </li>
               <li>
@@ -92,14 +93,14 @@ const Footer: React.FC = () => {
                   href="#contact" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
-                  Contact
+                  {t('Contact')}
                 </a>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="mb-4 text-lg font-semibold">Contact Info</h4>
+            <h4 className="mb-4 text-lg font-semibold">{t('footer.contactInfo')}</h4>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <svg className="w-5 h-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -121,7 +122,7 @@ const Footer: React.FC = () => {
         
         <div className="flex flex-col items-center justify-between md:flex-row">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Nguyễn Sinh Hùng. All rights reserved.
+            &copy; {new Date().getFullYear()} Nguyễn Sinh Hùng. {t('footer.copyright')}
           </p>
           
           <button

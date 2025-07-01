@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
+
+  // Sử dụng id cố định cho anchor, label dùng i18n
+  const navItems = [
+    { id: 'home', label: t('Home', 'Home') },
+    { id: 'about', label: t('About', 'About') },
+    { id: 'skills', label: t('Skills', 'Skills') },
+    { id: 'projects', label: t('Projects', 'Projects') },
+    { id: 'experience', label: t('Experience', 'Experience') },
+    { id: 'contact', label: t('Contact', 'Contact') },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,49 +36,59 @@ const Header: React.FC = () => {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
+      <div className="container flex items-center justify-between px-4 mx-auto">
         <a 
           href="#home" 
-          className="text-2xl font-bold text-blue-600 dark:text-blue-400 transition-colors duration-300"
+          className="text-2xl font-bold text-blue-600 transition-colors duration-300 dark:text-blue-400"
         >
           Portfolio
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="items-center hidden gap-8 md:flex">
           <ul className="flex gap-6">
-            {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
-              <li key={item}>
+            {navItems.map((item) => (
+              <li key={item.id}>
                 <a
-                  href={`#${item.toLowerCase()}`}
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  href={`#${item.id}`}
+                  className="transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400"
                 >
-                  {item}
+                  {item.label}
                 </a>
               </li>
             ))}
           </ul>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+            className="p-2 text-gray-700 transition-colors duration-300 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
+          {/* Language Switcher */}
+          <div className="flex items-center gap-4">
+            <button onClick={() => i18n.changeLanguage('en')} className={i18n.language === 'en' ? 'font-bold underline' : ''}>EN</button>
+            <button onClick={() => i18n.changeLanguage('vi')} className={i18n.language === 'vi' ? 'font-bold underline' : ''}>VI</button>
+          </div>
         </nav>
 
         {/* Mobile Navigation Toggle */}
         <div className="flex items-center gap-4 md:hidden">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+            className="p-2 text-gray-700 transition-colors duration-300 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
+           {/* Language Switcher */}
+           <div className="flex items-center gap-4">
+            <button onClick={() => i18n.changeLanguage('en')} className={i18n.language === 'en' ? 'font-bold underline' : ''}>EN</button>
+            <button onClick={() => i18n.changeLanguage('vi')} className={i18n.language === 'vi' ? 'font-bold underline' : ''}>VI</button>
+          </div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+            className="p-2 text-gray-700 transition-colors duration-300 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -76,20 +98,20 @@ const Header: React.FC = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-white dark:bg-gray-900 z-40 transition-transform duration-300 ease-in-out ${
+        className={`fixed h-screen inset-0 bg-white dark:bg-gray-900 z-40 transition-transform duration-300 ease-in-out ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden pt-20`}
       >
-        <nav className="container mx-auto px-4">
+        <nav className="container px-4 mx-auto">
           <ul className="flex flex-col gap-6">
-            {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
-              <li key={item}>
+            {navItems.map((item) => (
+              <li key={item.id}>
                 <a
-                  href={`#${item.toLowerCase()}`}
-                  className="block text-xl py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  href={`#${item.id}`}
+                  className="block py-2 text-xl text-gray-700 transition-colors duration-300 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item}
+                  {item.label}
                 </a>
               </li>
             ))}
