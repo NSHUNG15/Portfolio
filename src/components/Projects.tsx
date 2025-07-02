@@ -53,7 +53,7 @@ const Projects: React.FC = () => {
     {
       id: 4,
       title: "Sports Tracker Platform",
-      description: "A comprehensive sports tracking platform built with React, Node.js, and MongoDB. Features include user authentication, activity logging, and a responsive interface for tracking and managing sports activities.",
+      description: t('projects.projectDescriptions.4'),
       image: "https://images.pexels.com/photos/4164777/pexels-photo-4164777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       tags: ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB", "Express"],
       demoUrl: "https://sporttracker-ftdv.onrender.com",
