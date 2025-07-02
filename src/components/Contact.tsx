@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import emailjs from 'emailjs-com';
+import { useTranslation } from 'react-i18next';
 
 const SERVICE_ID = 'service_ql9bxy9';
 const TEMPLATE_ID = 'template_kuuuvvr';
@@ -9,7 +10,7 @@ const USER_ID = 'Pr1wIwJyOZRWTSnHr';
 
 const Contact: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
-  
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -111,11 +112,11 @@ const Contact: React.FC = () => {
       <div className="container px-4 mx-auto">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-            Get In Touch
+            {t('contact.get_in_touch')}
           </h2>
           <div className="w-20 h-1 mx-auto mb-6 bg-blue-600 dark:bg-blue-400"></div>
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            Have a project in mind or want to collaborate? Feel free to reach out through the form below or my contact details.
+          {t('contact.intro')}
           </p>
         </div>
 
@@ -128,7 +129,7 @@ const Contact: React.FC = () => {
           {/* Contact Info */}
           <div className="p-8 rounded-lg shadow-md bg-gray-50 dark:bg-gray-800">
             <h3 className="mb-6 text-2xl font-bold text-gray-800 dark:text-white">
-              Contact Information
+              {t('contact.info_title')}
             </h3>
             
             <div className="space-y-6">
@@ -149,7 +150,7 @@ const Contact: React.FC = () => {
                   <Phone size={20} />
                 </div>
                 <div>
-                  <h4 className="mb-1 text-lg font-medium text-gray-800 dark:text-white">Phone</h4>
+                  <h4 className="mb-1 text-lg font-medium text-gray-800 dark:text-white">{t('contact.phone')}</h4>
                   <a href="tel:+84857000163" className="text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
                   +84-857000163
                   </a>
@@ -161,7 +162,7 @@ const Contact: React.FC = () => {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <h4 className="mb-1 text-lg font-medium text-gray-800 dark:text-white">Location</h4>
+                  <h4 className="mb-1 text-lg font-medium text-gray-800 dark:text-white">{t('contact.location')}</h4>
                   <p className="text-gray-600 dark:text-gray-300">
                     Tp Đà Nẵng, Việt Nam
                   </p>
@@ -170,7 +171,7 @@ const Contact: React.FC = () => {
             </div>
             
             <div className="mt-10">
-              <h4 className="mb-4 text-lg font-medium text-gray-800 dark:text-white">Follow Me</h4>
+              <h4 className="mb-4 text-lg font-medium text-gray-800 dark:text-white">{t('contact.follow_me')}</h4>
               <div className="flex gap-4">
                 <a 
                   href="https://github.com/NSHUNG15" 
@@ -200,13 +201,13 @@ const Contact: React.FC = () => {
           {/* Contact Form */}
           <div className="p-8 bg-white border border-gray-100 rounded-lg shadow-md dark:bg-gray-900 dark:border-gray-800">
             <h3 className="mb-6 text-2xl font-bold text-gray-800 dark:text-white">
-              Send Me a Message
+              {t('contact.form_title')}
             </h3>
             
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Your Name <span className="text-red-500">*</span>
+                {t('contact.your_name')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -228,7 +229,7 @@ const Contact: React.FC = () => {
               
               <div className="mb-6">
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Your Email <span className="text-red-500">*</span>
+                  {t('contact.your_email')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
@@ -250,7 +251,7 @@ const Contact: React.FC = () => {
               
               <div className="mb-6">
                 <label htmlFor="subject" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Subject
+                  {t('contact.subject')}
                 </label>
                 <input
                   type="text"
@@ -265,7 +266,7 @@ const Contact: React.FC = () => {
               
               <div className="mb-6">
                 <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Your Message <span className="text-red-500">*</span>
+                {t('contact.your_message')} <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -300,24 +301,24 @@ const Contact: React.FC = () => {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Sending...
+                    {t('contact.sending')}
                   </>
                 ) : (
                   <>
-                    Send Message <Send size={18} />
+                   {t('contact.btn_send')} <Send size={18} />
                   </>
                 )}
               </button>
               
               {submitStatus === 'success' && (
                 <p className="mt-4 text-sm text-center text-green-600 dark:text-green-400">
-                  Your message has been sent successfully! I'll get back to you soon.
+                   {t('contact.success')}
                 </p>
               )}
               
               {submitStatus === 'error' && (
                 <p className="mt-4 text-sm text-center text-red-600 dark:text-red-400">
-                  There was an error sending your message. Please try again later.
+                   {t('contact.error')}
                 </p>
               )}
             </form>

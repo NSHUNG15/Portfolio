@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
+import { useTranslation } from 'react-i18next';
 
 interface Project {
   id: number;
@@ -12,27 +13,17 @@ interface Project {
   githubUrl: string;
   featured: boolean;
 }
-
 const Projects: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
   const [filter, setFilter] = useState<string>('all');
-  
+  const { t } = useTranslation();
+
   // Sample projects data
   const projects: Project[] = [
-    // {
-    //   id: 1,
-    //   title: 'E-Commerce Platform',
-    //   description: 'A full-featured e-commerce platform built with React, Node.js, and MongoDB. Includes product management, cart functionality, user authentication, and payment processing.',
-    //   image: 'https://images.pexels.com/photos/6956903/pexels-photo-6956903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    //   tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    //   demoUrl: '#',
-    //   githubUrl: '#',
-    //   featured: true,
-    // },
     {
-      id: 2,
+      id: 1,
       title: 'FORM - Sport KHMT',
-      description: 'A web application for managing student activities in the Faculty of Information Technology. Features include event management, user authentication, and a modern UI built with HTML, CSS, and JavaScript.',
+      description: t('projects.projectDescriptions.1'),
       image: 'https://images.pexels.com/photos/6956802/pexels-photo-6956802.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       tags: ['HTML', 'CSS', 'JavaScript', 'Tailwind CSS'],
       demoUrl: 'https://hoi-thao-doan-truong-khmt.vercel.app',
@@ -40,9 +31,9 @@ const Projects: React.FC = () => {
       featured: true, 
     },
     {
-      id: 3,
+      id: 2,
       title: 'Travel Golobe (Team)',
-      description: 'A travel booking website that allows users to search for flights, hotels, and car rentals. Features include a responsive design, user authentication, and a modern UI.',
+      description: t('projects.projectDescriptions.2'),
       image: 'https://images.pexels.com/photos/3888151/pexels-photo-3888151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       tags: ['React', 'TypeScript', 'PostgreSQL', 'API', 'Tailwind CSS'],
       demoUrl: 'https://travel-golobe.vercel.app/',
@@ -50,13 +41,23 @@ const Projects: React.FC = () => {
       featured: true,
     },
     {
-      id: 4,
+      id: 3,
       title: 'Portfolio Website',
-      description: 'A responsive portfolio website template for developers, built with modern design principles and animations.',
+      description: t('projects.projectDescriptions.3'),
       image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       tags: ['React', 'Tailwind CSS', 'Framer Motion'],
       demoUrl: 'https://portfolio-nsh.vercel.app',
       githubUrl: '#',
+      featured: false,
+    },
+    {
+      id: 4,
+      title: "Sports Tracker Platform",
+      description: "A comprehensive sports tracking platform built with React, Node.js, and MongoDB. Features include user authentication, activity logging, and a responsive interface for tracking and managing sports activities.",
+      image: "https://images.pexels.com/photos/4164777/pexels-photo-4164777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      tags: ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB", "Express"],
+      demoUrl: "https://sporttracker-ftdv.onrender.com",
+      githubUrl: "#",
       featured: false,
     },
   ];
@@ -68,7 +69,7 @@ const Projects: React.FC = () => {
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.tags.includes(filter));
-
+  
   return (
     <section
       id="projects"
@@ -77,11 +78,11 @@ const Projects: React.FC = () => {
       <div className="container px-4 mx-auto">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-            My Projects
+            {t('projects.title')}
           </h2>
           <div className="w-20 h-1 mx-auto mb-6 bg-blue-600 dark:bg-blue-400"></div>
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            Here are some of my recent projects. Each one showcases different skills and technologies.
+            {t('projects.description')}
           </p>
         </div>
 
@@ -133,7 +134,7 @@ const Projects: React.FC = () => {
               />
                 {project.featured && (
                   <div className="absolute px-3 py-1 text-xs font-bold text-white bg-blue-600 rounded-full top-4 left-4">
-                    Featured
+                    {t('projects.btn_featured')}
                   </div>
                 )}
               </div>
@@ -142,7 +143,7 @@ const Projects: React.FC = () => {
                   {project.title}
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-gray-300">
-                  {project.description}
+                  {t(project.description)}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map(tag => (
@@ -196,7 +197,7 @@ const Projects: React.FC = () => {
             href="#"
             className="inline-flex items-center gap-2 px-8 py-3 font-medium text-white transition-all duration-300 transform bg-blue-600 rounded-full hover:bg-blue-700 hover:scale-105"
           >
-            View All Projects <ArrowRight size={18} />
+            {t('projects.btn_all')} <ArrowRight size={18} />
           </a>
         </div>
       </div>

@@ -8,13 +8,53 @@
     "btn_contact": "Liên hệ với tôi",
     "btn_down": "Cuộn xuống"
   },
+  "skills": {
+    "title": "Kỹ năng của tôi",
+    "description": "Tôi đã làm việc với nhiều công nghệ khác nhau trong lĩnh vực phát triển web. Dưới đây là tổng quan về các kỹ năng kỹ thuật và mức độ thành thạo của tôi."
+  },
   "about": {
-    "title": "Về tôi",
-    "description": "Tôi là một lập trình viên đam mê..."
+    "title": "Thông tin về tôi",
+    "job": "Frontend Developer & UX Designer",
+    "description1": "Tôi là một lập trình viên frontend đầy nhiệt huyết với 1 năm kinh nghiệm trong thiết kế và phát triển web, kết hợp giữa thiết kế ấn tượng và chức năng trực quan. Tôi luôn tìm kiếm những giải pháp sáng tạo nhằm mang lại trải nghiệm người dùng tối ưu. Tôi thành thạo HTML, CSS, JavaScript và không ngừng học hỏi các framework hiện đại như React để xây dựng các ứng dụng web chất lượng cao và tương tác tốt.",
+    "description2": "Cách tiếp cận của tôi kết hợp giữa kỹ năng kỹ thuật vững chắc và khả năng giải quyết vấn đề một cách sáng tạo. Tôi ưu tiên viết mã sạch, dễ bảo trì và có khả năng mở rộng, nhằm tạo nền tảng vững chắc cho việc phát triển về sau. Ngoài giờ lập trình, tôi thích khám phá các công nghệ mới nổi, đóng góp cho các dự án mã nguồn mở, chơi bóng đá, nghe nhạc và xem phim để thư giãn và duy trì cảm hứng.",
+    "time_work_vi": "Sẵn sàng làm việc full-time — chấp nhận cả hình thức từ xa (remote) hoặc tại văn phòng",
+    "btn_hire": "Liên hệ tôi",
+    "download_cv": "Tải xuống CV"
+  },
+  "projects": {
+    "title": "Dự án của tôi",
+    "description": "Dưới đây là một số dự án gần đây của tôi. Mỗi dự án đều thể hiện các kỹ năng và công nghệ khác nhau.",
+    "description_no_projects": "Không tìm thấy dự án nào với bộ lọc đã chọn.",
+    "btn_all": "Xem tất cả dự án",
+    "btn_featured": "Nổi bật",
+    "projectDescriptions": {
+      "1": "Một ứng dụng web để quản lý các hoạt động của sinh viên trong Khoa Công nghệ Thông tin. Các tính năng bao gồm quản lý sự kiện, xác thực người dùng và giao diện hiện đại được xây dựng bằng HTML, CSS và JavaScript.",
+      "2": "Một trang web đặt chỗ du lịch cho phép người dùng tìm kiếm chuyến bay, khách sạn và cho thuê xe. Các tính năng bao gồm thiết kế đáp ứng, xác thực người dùng và giao diện hiện đại.",
+      "3": "Một mẫu trang web portfolio đáp ứng cho các nhà phát triển, được xây dựng với các nguyên tắc thiết kế hiện đại và hoạt ảnh.",
+      "4": "Nền tảng theo dõi thể thao được xây dựng bằng HTML, CSS và JavaScript, Node.js và MongoDB. Các tính năng bao gồm hiển thị, tạo, xóa, chỉnh sửa các cặp đấu của các môn thể thao và theo dõi các đội thi đấu, với giao diện đáp ứng để quản lý dễ dàng."
+    }
+  },
+  "experience": {
+    "title": "Kinh nghiệm của tôi",
+    "subtitle": "Hành trình nghề nghiệp của tôi và những công ty mà tôi đã có cơ hội làm việc."
   },
   "contact": {
-    "title": "Liên hệ",
-    "description": "Hãy liên hệ với tôi!"
+    "get_in_touch": "Kết nối với tôi",
+    "intro": "Bạn có dự án trong đầu hoặc muốn hợp tác? Vui lòng liên hệ qua biểu mẫu bên dưới hoặc thông tin liên hệ của tôi.",
+    "info_title": "Thông tin liên hệ",
+    "phone": "Số điện thoại",
+    "location": "Địa chỉ",
+    "location_value": "Tp Đà Nẵng, Việt Nam",
+    "follow_me": "Theo dõi tôi",
+    "form_title": "Gửi tin nhắn cho tôi",
+    "your_name": "Tên của bạn",
+    "your_email": "Email của bạn",
+    "subject": "Chủ đề",
+    "your_message": "Nội dung tin nhắn",
+    "btn_send": "Gửi tin nhắn",
+    "sending": "Đang gửi...",
+    "success": "Tin nhắn của bạn đã được gửi thành công! Tôi sẽ phản hồi sớm.",
+    "error": "Có lỗi khi gửi tin nhắn. Vui lòng thử lại sau."
   },
   "Home": "Trang chủ",
   "About": "Về tôi",

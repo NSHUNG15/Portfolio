@@ -2,10 +2,12 @@ import React from 'react';
 import { User, Mail, MapPin, Calendar, FileText, Github, Facebook } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import avatar from '../img/avatar.jpg'; // Thêm dòng này ở đầu file
+import { useTranslation } from 'react-i18next';
 
 
 const About: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
+  const { t } = useTranslation();
 
   return (
     <section 
@@ -15,7 +17,7 @@ const About: React.FC = () => {
       <div className="container px-4 mx-auto">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-            About Me
+            {t('about.title')}
           </h2>
           <div className="w-20 h-1 mx-auto bg-blue-600 dark:bg-blue-400"></div>
         </div>
@@ -43,17 +45,11 @@ const About: React.FC = () => {
             </h3>
             
             <p className="mb-6 leading-relaxed text-gray-600 dark:text-gray-300">
-              I am a passionate frontend developer with 1 year of experience in web design and development
-              combining impressive design with intuitive functionality, always looking for innovative solutions
-              to deliver optimal user experience. I am proficient in HTML, CSS, JavaScript and constantly learning
-              modern frameworks such as React to create high-quality, interactive web applications.
+              {t('about.description1')}
             </p>
             
             <p className="mb-8 leading-relaxed text-gray-600 dark:text-gray-300">
-              My approach combines technical expertise with creative problem-solving. I believe in 
-              writing clean, maintainable code that scales well and provides a solid foundation for 
-              future development. When I'm not coding, you'll find me exploring new technologies, 
-              contributing to open source, or hiking in the mountains.
+              {t('about.description2')}
             </p>
 
             <div className="grid grid-cols-1 gap-4 mb-8 md:grid-cols-2">
@@ -71,7 +67,7 @@ const About: React.FC = () => {
               </div>
               <div className="flex items-center">
                 <Calendar className="mr-3 text-blue-600 dark:text-blue-400" size={20} />
-                <span className="text-gray-700 dark:text-gray-300">Available for freelance</span>
+                <span className="w-full text-gray-700 dark:text-gray-300">{t('about.time_work')}</span>
               </div>
             </div>
 
@@ -80,7 +76,7 @@ const About: React.FC = () => {
                 href="#contact" 
                 className="px-6 py-3 font-medium text-white transition-all duration-300 transform bg-blue-600 rounded-full hover:bg-blue-700 hover:scale-105"
               >
-                Hire Me
+                {t('about.btn_hire')}
               </a>
               <a 
                 href="https://drive.google.com/file/d/1qPcwuptlOAjVa0uZxFet87WO_XupJT2q/view?usp=sharing" 
@@ -89,7 +85,7 @@ const About: React.FC = () => {
                 className="flex items-center gap-2 px-6 py-3 font-medium text-gray-800 transition-all duration-300 bg-gray-200 rounded-full dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-gray-200"
               >
                 <FileText size={18} />
-                Download CV
+                {t('about.download_cv')}
               </a>
             </div>
 

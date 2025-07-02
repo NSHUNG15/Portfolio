@@ -1,5 +1,6 @@
 import React from 'react';
 import { useInView } from '../hooks/useInView';
+import { useTranslation } from 'react-i18next';
 
 interface Skill {
   name: string;
@@ -41,6 +42,7 @@ const Skills: React.FC = () => {
     design: 'Design',
     other: 'Other Skills',
   };
+  const { t } = useTranslation();
 
   return (
     <section
@@ -50,12 +52,11 @@ const Skills: React.FC = () => {
       <div className="container px-4 mx-auto">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-            My Skills
+            {t('skills.title')}
           </h2>
           <div className="w-20 h-1 mx-auto mb-6 bg-blue-600 dark:bg-blue-400"></div>
           <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            I've worked with a variety of technologies in the web development world.
-            Here's an overview of my technical skills and proficiency levels.
+            {t('skills.description')}
           </p>
         </div>
 
