@@ -155,7 +155,7 @@ const Experience: React.FC = () => {
 
         <div 
           ref={ref as React.RefObject<HTMLDivElement>}
-          className="relative max-w-3xl mx-auto"
+          className="relative max-w-4xl mx-auto"
         >
           {/* Timeline line */}
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700 transform md:-translate-x-1/2"></div>
@@ -176,7 +176,7 @@ const Experience: React.FC = () => {
               </div>
 
               {/* Content always on the right */}
-              <div className="w-full ml-8 md:mt-0 md:ml-8">
+              <div className="ml-8 md:w-full md:mt-0 md:ml-4">
                 <div className="p-6 transition-all duration-300 bg-white rounded-lg shadow-md dark:bg-gray-900 hover:shadow-lg">
                   <h3 className="mb-1 text-xl font-bold text-gray-800 dark:text-white">
                     {exp.title[i18n.language as 'en' | 'vi']}
