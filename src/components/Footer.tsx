@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li>
                 <a 
-                  href="#home" 
+                href="/#home" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
                   {t('Home')}
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a 
-                  href="#about" 
+                href="/#about" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
                   {t('About')}
@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a 
-                  href="#skills" 
+                href="/#skills" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
                   {t('Skills')}
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a 
-                  href="#projects" 
+                href="/#projects" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
                   {t('Projects')}
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a 
-                  href="#experience" 
+                href="/#experience" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
                   {t('Experience')}
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a 
-                  href="#contact" 
+                href="/#contact" 
                   className="text-gray-400 transition-colors duration-300 hover:text-blue-400"
                 >
                   {t('Contact')}

@@ -33,9 +33,11 @@ const Header: React.FC = () => {
 
   // Xử lý click cho nav item
   const handleNavClick = (id: string) => {
+    // Luôn cập nhật URL thành /#id và scroll đến section
     if (location.pathname !== '/') {
-      navigate('/', { state: { scrollTo: id } });
+      navigate('/#' + id);
     } else {
+      window.location.hash = id;
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
