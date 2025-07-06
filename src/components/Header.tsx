@@ -66,7 +66,7 @@ const Header: React.FC = () => {
     >
       <div className="container flex items-center justify-between px-4 mx-auto">
         <a 
-          href="#home" 
+          href="/" 
           className="text-2xl font-bold text-blue-600 transition-colors duration-300 dark:text-blue-400"
         >
           Portfolio
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleNavClick(item.id)}
-                  className="transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400 bg-transparent border-none outline-none cursor-pointer"
+                  className="transition-colors duration-300 bg-transparent border-none outline-none cursor-pointer hover:text-blue-600 dark:hover:text-blue-400"
                   style={{ background: 'none', border: 'none', padding: 0 }}
                 >
                   {item.label}
@@ -139,7 +139,7 @@ const Header: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => { handleNavClick(item.id); setIsMenuOpen(false); }}
-                  className="block py-2 text-xl text-gray-700 transition-colors duration-300 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 bg-transparent border-none outline-none cursor-pointer"
+                  className="block py-2 text-xl text-gray-700 transition-colors duration-300 bg-transparent border-none outline-none cursor-pointer dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                   style={{ background: 'none', border: 'none', padding: 0 }}
                 >
                   {item.label}
