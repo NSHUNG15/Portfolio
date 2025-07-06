@@ -10,7 +10,7 @@ i18n
       en: { translation: en },
       vi: { translation: vi },
     },
-    lng: 'vi', // default language
+    lng: localStorage.getItem('language') || 'vi', // default language is Vietnamese
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,

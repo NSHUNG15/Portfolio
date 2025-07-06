@@ -97,8 +97,8 @@ const Header: React.FC = () => {
           </button>
           {/* Language Switcher */}
           <div className="flex items-center gap-4">
-            <button onClick={() => i18n.changeLanguage('en')} className={i18n.language === 'en' ? 'font-bold underline' : ''}>EN</button>
-            <button onClick={() => i18n.changeLanguage('vi')} className={i18n.language === 'vi' ? 'font-bold underline' : ''}>VI</button>
+            <button onClick={() => { i18n.changeLanguage('en'); localStorage.setItem('language', 'en'); }} className={i18n.language === 'en' ? 'font-bold underline' : ''}>EN</button>
+            <button onClick={() => { i18n.changeLanguage('vi'); localStorage.setItem('language', 'vi'); }} className={i18n.language === 'vi' ? 'font-bold underline' : ''}>VI</button>
           </div>
         </nav>
 
@@ -113,8 +113,8 @@ const Header: React.FC = () => {
           </button>
            {/* Language Switcher */}
            <div className="flex items-center gap-4">
-            <button onClick={() => i18n.changeLanguage('en')} className={i18n.language === 'en' ? 'font-bold underline' : ''}>EN</button>
-            <button onClick={() => i18n.changeLanguage('vi')} className={i18n.language === 'vi' ? 'font-bold underline' : ''}>VI</button>
+            <button onClick={() => { i18n.changeLanguage('en'); localStorage.setItem('language', 'en'); }} className={i18n.language === 'en' ? 'font-bold underline' : ''}>EN</button>
+            <button onClick={() => { i18n.changeLanguage('vi'); localStorage.setItem('language', 'vi'); }} className={i18n.language === 'vi' ? 'font-bold underline' : ''}>VI</button>
           </div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
