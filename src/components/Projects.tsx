@@ -2,83 +2,28 @@ import React, { useState } from 'react';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import { useTranslation } from 'react-i18next';
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  demoUrl: string;
-  githubUrl: string;
-  featured: boolean;
-}
+import { projects as projectsData, ProjectData } from '../services/projects';
 const Projects: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
   const [filter, setFilter] = useState<string>('all');
   const { t } = useTranslation();
 
-  // Sample projects data
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: 'FORM - Sport KHMT',
-      description: t('projects.projectDescriptions.1'),
-      image: 'https://images.pexels.com/photos/6956802/pexels-photo-6956802.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      tags: ['HTML', 'CSS', 'JavaScript', 'Tailwind CSS'],
-      demoUrl: 'https://hoi-thao-doan-truong-khmt.vercel.app',
-      githubUrl: '#',
-      featured: true, 
-    },
-    {
-      id: 2,
-      title: 'Travel Golobe (Team)',
-      description: t('projects.projectDescriptions.2'),
-      image: 'https://images.pexels.com/photos/3888151/pexels-photo-3888151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      tags: ['React', 'TypeScript', 'PostgreSQL', 'API', 'Tailwind CSS'],
-      demoUrl: 'https://travel-golobe.vercel.app/',
-      githubUrl: '#',
-      featured: true,
-    },
-    {
-      id: 3,
-      title: 'Portfolio Website',
-      description: t('projects.projectDescriptions.3'),
-      image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      tags: ['React', 'Tailwind CSS', 'Framer Motion'],
-      demoUrl: 'https://portfolio-nsh.vercel.app',
-      githubUrl: '#',
-      featured: false,
-    },
-    {
-      id: 4,
-      title: "Sports Tracker Platform",
-      description: t('projects.projectDescriptions.4'),
-      image: "https://images.pexels.com/photos/4164777/pexels-photo-4164777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      tags: ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB", "Express"],
-      demoUrl: "https://sporttracker-ftdv.onrender.com",
-      githubUrl: "#",
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "Number Click Game",
-      description: t('projects.projectDescriptions.5'),
-      image: "https://images.pexels.com/photos/15964399/pexels-photo-15964399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // hoặc ảnh chụp màn hình game của bạn nếu có
-      tags: ["React", "TypeScript", "Tailwind CSS"],
-      demoUrl: "https://number-click-game.vercel.app",
-      githubUrl: "#",
-      featured: false,
-    }
-  ];
+  // Lấy dữ liệu project từ file chung
+  const projects: ProjectData[] = projectsData;
 
   // Get all unique tags
   const allTags = [...new Set(projects.flatMap(project => project.tags))];
 
-  // Filter projects based on selected tag
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.tags.includes(filter));
+  // Chỉ lấy 4 project ưu tiên, nổi bật lên trước
+  const featuredProjects = projects
+    .filter((p) => p.featured)
+    .concat(projects.filter((p) => !p.featured))
+    .slice(0, 4);
+
+  // Filter projects based on selected tag (áp dụng cho 4 project hiển thị)
+  const filteredProjects = filter === 'all'
+    ? featuredProjects
+    : featuredProjects.filter(project => project.tags.includes(filter));
   
   return (
     <section
@@ -204,7 +149,7 @@ const Projects: React.FC = () => {
 
         <div className="mt-12 text-center">
           <a
-            href="#"
+            href="/all-projects"
             className="inline-flex items-center gap-2 px-8 py-3 font-medium text-white transition-all duration-300 transform bg-blue-600 rounded-full hover:bg-blue-700 hover:scale-105"
           >
             {t('projects.btn_all')} <ArrowRight size={18} />

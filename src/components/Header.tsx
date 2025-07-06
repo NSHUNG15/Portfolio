@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +9,8 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { t, i18n } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Sử dụng id cố định cho anchor, label dùng i18n
   const navItems = [
@@ -27,6 +30,31 @@ const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Xử lý click cho nav item
+  const handleNavClick = (id: string) => {
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: id } });
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  useEffect(() => {
+    // Nếu có state scrollTo khi vừa chuyển route về trang chủ thì cuộn đến section
+    if (location.pathname === '/' && (location.state as any)?.scrollTo) {
+      const id = (location.state as any).scrollTo;
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100); // delay để đảm bảo DOM đã render
+    }
+  }, [location]);
 
   return (
     <header
@@ -49,12 +77,14 @@ const Header: React.FC = () => {
           <ul className="flex gap-6">
             {navItems.map((item) => (
               <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400"
+                <button
+                  type="button"
+                  onClick={() => handleNavClick(item.id)}
+                  className="transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400 bg-transparent border-none outline-none cursor-pointer"
+                  style={{ background: 'none', border: 'none', padding: 0 }}
                 >
                   {item.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
@@ -106,13 +136,14 @@ const Header: React.FC = () => {
           <ul className="flex flex-col gap-6">
             {navItems.map((item) => (
               <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="block py-2 text-xl text-gray-700 transition-colors duration-300 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-                  onClick={() => setIsMenuOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => { handleNavClick(item.id); setIsMenuOpen(false); }}
+                  className="block py-2 text-xl text-gray-700 transition-colors duration-300 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 bg-transparent border-none outline-none cursor-pointer"
+                  style={{ background: 'none', border: 'none', padding: 0 }}
                 >
                   {item.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>

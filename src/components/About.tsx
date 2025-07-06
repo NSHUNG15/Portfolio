@@ -1,7 +1,7 @@
 import React from 'react';
 import { User, Mail, MapPin, Calendar, FileText, Github, Facebook } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
-import avatar from '../img/avatar.jpg'; // Thêm dòng này ở đầu file
+import avatar from '../img/avatar.jpg';
 import { useTranslation } from 'react-i18next';
 
 
