@@ -31,7 +31,8 @@
       "1": "A web application for managing student activities in the Faculty of Information Technology. Features include event management, user authentication, and a modern UI built with HTML, CSS, and JavaScript.",
       "2": "A travel booking website that allows users to search for flights, hotels, and car rentals. Features include a responsive design, user authentication, and a modern UI.",
       "3": "A responsive portfolio website template for developers, built with modern design principles and animations.",
-      "4": "A sports tracking platform built with HTML, CSS và JavaScript, Node.js và MongoDB. Features include displaying, creating, deleting, editing sports matchups, and tracking competing teams, with a responsive interface for easy management."
+      "4": "A sports tracking platform built with HTML, CSS và JavaScript, Node.js và MongoDB. Features include displaying, creating, deleting, editing sports matchups, and tracking competing teams, with a responsive interface for easy management.",
+      "5": "A fun and interactive number clicking game built with React. The goal is to click on numbers in order as fast as possible. It includes score tracking, timer, autoplay mode, and responsive design for desktop and mobile devices."
     }
   },
   "experience": {

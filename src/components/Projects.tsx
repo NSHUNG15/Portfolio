@@ -60,6 +60,16 @@ const Projects: React.FC = () => {
       githubUrl: "#",
       featured: false,
     },
+    {
+      id: 5,
+      title: "Number Click Game",
+      description: t('projects.projectDescriptions.5'),
+      image: "https://images.pexels.com/photos/15964399/pexels-photo-15964399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // hoặc ảnh chụp màn hình game của bạn nếu có
+      tags: ["React", "TypeScript", "Tailwind CSS"],
+      demoUrl: "https://number-click-game.vercel.app",
+      githubUrl: "#",
+      featured: false,
+    }
   ];
 
   // Get all unique tags
