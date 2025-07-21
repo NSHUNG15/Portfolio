@@ -107,7 +107,7 @@ const Experience: React.FC = () => {
         en: 'Vietnam',
         vi: 'Việt Nam',
       },
-      date: 'March 2025 - Present',
+      date: 'March 2025 - July 2025',
       description: [
         {
           en: 'Developed and maintained UI/UX for real-world projects, ensuring seamless user interactions',
