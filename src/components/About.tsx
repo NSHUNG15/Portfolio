@@ -41,7 +41,7 @@ const About: React.FC = () => {
 
           <div>
             <h3 className="mb-4 text-2xl font-bold text-gray-800 dark:text-white">
-              Frontend Developer & UX Designer
+              Frontend Developer & UI/UX Designer
             </h3>
             
             <p className="mb-6 leading-relaxed text-gray-600 dark:text-gray-300">
