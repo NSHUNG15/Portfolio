@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="col-span-1 md:col-span-2">
             <h3 className="mb-4 text-2xl font-bold">Nguyễn Sinh Hùng</h3>
-            <p className="max-w-md mb-6 text-gray-800">
+            <p className="max-w-md mb-6 text-gray-800 dark:text-white">
               {t('footer.intro')}
             </p>
             <div className="flex gap-4">

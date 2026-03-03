@@ -152,7 +152,7 @@ const About: React.FC = () => {
               </motion.a>
 
               <motion.a 
-                href="https://drive.google.com/file/d/1qPcwuptlOAjVa0uZxFet87WO_XupJT2q/view?usp=sharing" 
+                href="https://drive.google.com/file/d/1fPNPa9h98u1pbAo8PYBygG6mJ9ZrI1vZ/view?usp=sharing" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-8 py-3 font-semibold text-blue-600 transition-all duration-300 border-2 border-blue-200 dark:text-blue-400 bg-white/50 dark:bg-gray-900/50 dark:border-blue-900/50 rounded-xl hover:bg-blue-50 dark:hover:bg-gray-800/50 backdrop-blur-sm"
