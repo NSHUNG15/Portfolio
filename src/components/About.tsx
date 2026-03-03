@@ -105,7 +105,7 @@ const About: React.FC = () => {
                 whileHover={{ y: -5 }}
               >
                 <Mail className="mb-2 text-blue-600 dark:text-blue-400" size={20} />
-                <p className="text-sm text-gray-800 dark:text-gray-800">Email</p>
+                {/* <p className="text-sm text-gray-800 dark:text-gray-800">Email</p> */}
                 <p className="font-semibold text-gray-900 dark:text-white">nshung0105@gmail.com</p>
               </motion.div>
 
@@ -115,7 +115,7 @@ const About: React.FC = () => {
                 whileHover={{ y: -5 }}
               >
                 <MapPin className="mb-2 text-blue-600 dark:text-blue-400" size={20} />
-                <p className="text-sm text-gray-800 dark:text-gray-800">Location</p>
+                {/* <p className="text-sm text-gray-800 dark:text-gray-800">Location</p> */}
                 <p className="font-semibold text-gray-900 dark:text-white">Tp Đà Nẵng, VN</p>
               </motion.div>
             </motion.div>
@@ -148,7 +148,9 @@ const About: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:opacity-100" />
-                <span className="relative">Hire Me</span>
+                <span className="relative">
+                  {t('about.hireMe')}
+                </span>
               </motion.a>
 
               <motion.a 
@@ -159,7 +161,7 @@ const About: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
               >
                 <Download size={18} />
-                Download CV
+                {t('about.downloadCV')}
               </motion.a>
             </motion.div>
 
