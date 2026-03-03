@@ -149,7 +149,7 @@ const About: React.FC = () => {
               >
                 <motion.div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:opacity-100" />
                 <span className="relative">
-                  {t('about.hireMe')}
+                  {t('about.btn_hire')}
                 </span>
               </motion.a>
 
@@ -161,7 +161,7 @@ const About: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
               >
                 <Download size={18} />
-                {t('about.downloadCV')}
+                {t('about.download_cv')}
               </motion.a>
             </motion.div>
 
