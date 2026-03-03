@@ -22,7 +22,7 @@
     "download_cv": "Tải xuống CV"
   },
   "projects": {
-    "title": "Dự án của tôi",
+    "title": "Dự án nổi bật",
     "description": "Dưới đây là một số dự án gần đây của tôi. Mỗi dự án đều thể hiện các kỹ năng và công nghệ khác nhau.",
     "description_no_projects": "Không tìm thấy dự án nào với bộ lọc đã chọn.",
     "btn_all": "Xem tất cả dự án",

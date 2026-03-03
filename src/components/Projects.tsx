@@ -2,159 +2,223 @@ import React, { useState } from 'react';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence } from 'framer-motion';
 import { projects as projectsData, ProjectData } from '../services/projects';
+
 const Projects: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1 });
   const [filter, setFilter] = useState<string>('all');
   const { t } = useTranslation();
 
-  // Lấy dữ liệu project từ file chung
   const projects: ProjectData[] = projectsData;
-
-  // Get all unique tags
   const allTags = [...new Set(projects.flatMap(project => project.tags))];
 
-  // Chỉ lấy 4 project ưu tiên, nổi bật lên trước
   const featuredProjects = projects
     .filter((p) => p.featured)
     .concat(projects.filter((p) => !p.featured))
     .slice(0, 4);
 
-  // Filter projects based on selected tag (áp dụng cho 4 project hiển thị)
   const filteredProjects = filter === 'all'
     ? featuredProjects
     : featuredProjects.filter(project => project.tags.includes(filter));
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },
+  };
   
   return (
     <section
       id="projects"
-      className="py-20 transition-colors duration-300 bg-white dark:bg-gray-900"
+      className="py-20 transition-colors duration-300 bg-white lg:py-32 dark:bg-gray-950"
     >
       <div className="container px-4 mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
+        <motion.div
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
             {t('projects.title')}
           </h2>
-          <div className="w-20 h-1 mx-auto mb-6 bg-blue-600 dark:bg-blue-400"></div>
-          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+          <motion.div
+            className="w-20 h-1.5 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 rounded-full"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          />
+          <p className="max-w-2xl mx-auto text-gray-800 dark:text-white">
             {t('projects.description')}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          <button
+        {/* Filter Tags */}
+        <motion.div 
+          className="flex flex-wrap justify-center gap-3 mb-12"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <motion.button
             onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+            className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
               filter === 'all'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700'
+                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-blue-600 dark:hover:border-blue-400'
             }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             All
-          </button>
+          </motion.button>
           {allTags.map(tag => (
-            <button
+            <motion.button
               key={tag}
               onClick={() => setFilter(tag)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
                 filter === tag
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-blue-600 dark:hover:border-blue-400'
               }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {tag}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        <div 
+        <motion.div 
           ref={ref as React.RefObject<HTMLDivElement>}
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 transition-all duration-700 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className="grid grid-cols-1 gap-8 md:grid-cols-2"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
         >
-          {filteredProjects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className="relative overflow-hidden aspect-video">
-              <img
-                src={`https://api.microlink.io/?url=${project.demoUrl}&screenshot=true&embed=screenshot.url`}
-                alt={project.title}
-                className="object-cover w-full h-full transition-transform duration-500 hover:scale-110"
-              />
-                {project.featured && (
-                  <div className="absolute px-3 py-1 text-xs font-bold text-white bg-blue-600 rounded-full top-4 left-4">
-                    {t('projects.btn_featured')}
-                  </div>
-                )}
-              </div>
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-bold text-gray-800 dark:text-white">
-                  {project.title}
-                </h3>
-                <p className="mb-4 text-gray-600 dark:text-gray-300">
-                  {t(project.description)}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map(tag => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-xs font-medium text-gray-700 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300"
+          <AnimatePresence mode="wait">
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                className="relative overflow-hidden transition-all duration-300 bg-white border border-gray-100 group rounded-2xl dark:bg-gray-800 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-900/50"
+                variants={itemVariants}
+                layout
+              >
+                {/* Image Container */}
+                <div className="relative h-64 overflow-hidden bg-gray-200 md:h-72 dark:bg-gray-700">
+                  <motion.img
+                    src={`https://api.microlink.io/?url=${project.demoUrl}&screenshot=true&embed=screenshot.url`}
+                    alt={project.title}
+                    className="object-cover w-full h-full"
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.4 }}
+                  />
+                  
+                  {/* Overlay */}
+                  <motion.div
+                    className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/40 dark:to-gray-900/60 group-hover:opacity-100"
+                  />
+
+                  {/* Featured Badge */}
+                  {project.featured && (
+                    <motion.div
+                      className="absolute px-4 py-2 text-sm font-semibold text-white shadow-lg top-4 left-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600"
+                      whileHover={{ scale: 1.05 }}
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      ⭐ Featured
+                    </motion.div>
+                  )}
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-3">
-                    <a
+
+                {/* Content */}
+                <div className="p-6 space-y-4">
+                  <div>
+                    <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-gray-800 dark:text-white">
+                      {t(project.description)}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map(tag => (
+                      <motion.span
+                        key={tag}
+                        className="px-3 py-1 text-xs font-medium text-blue-700 border border-blue-100 rounded-full bg-blue-50 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800"
+                        whileHover={{ y: -2 }}
+                      >
+                        {tag}
+                      </motion.span>
+                    ))}
+                  </div>
+
+                  {/* CTA Links */}
+                  <div className="flex items-center gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                    <motion.a
                       href={project.demoUrl}
-                      className="flex items-center gap-1 text-blue-600 transition-colors duration-300 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                      className="flex items-center gap-2 font-medium text-blue-600 transition-all duration-300 dark:text-blue-400 hover:gap-3"
+                      whileHover={{ x: 5 }}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <ExternalLink size={16} /> Demo
-                    </a>
-                    <a
+                      <ExternalLink size={16} /> Live Demo
+                    </motion.a>
+                    <motion.a
                       href={project.githubUrl}
-                      className="flex items-center gap-1 text-gray-700 transition-colors duration-300 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                      className="flex items-center gap-2 font-medium text-gray-700 transition-all duration-300 dark:text-gray-300 hover:gap-3"
+                      whileHover={{ x: 5 }}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <Github size={16} /> Code
-                    </a>
+                    </motion.a>
                   </div>
-                  {/* <a
-                    href={`#project-${project.id}`}
-                    className="flex items-center gap-1 text-blue-600 transition-colors duration-300 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
-                  >
-                    Details <ArrowRight size={16} />
-                  </a> */}
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {filteredProjects.length === 0 && (
-          <div className="py-12 text-center">
-            <p className="text-gray-600 dark:text-gray-400">No projects found with the selected filter.</p>
-          </div>
+          <motion.div
+            className="py-12 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <p className="text-gray-800 dark:text-gray-800">No projects found with the selected filter.</p>
+          </motion.div>
         )}
 
-        <div className="mt-12 text-center">
-          <a
+        {/* View All Button */}
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <motion.a
             href="/all-projects"
-            className="inline-flex items-center gap-2 px-8 py-3 font-medium text-white transition-all duration-300 transform bg-blue-600 rounded-full hover:bg-blue-700 hover:scale-105"
+            className="inline-flex items-center gap-2 px-8 py-4 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl hover:shadow-lg"
+            whileHover={{ scale: 1.05, gap: '12px' }}
+            whileTap={{ scale: 0.95 }}
           >
-            {t('projects.btn_all')} <ArrowRight size={18} />
-          </a>
-        </div>
+            View All Projects
+            <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+              <ArrowRight size={20} />
+            </motion.div>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

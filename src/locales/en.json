@@ -22,7 +22,7 @@
     "download_cv": "Download CV"
   },
   "projects": {
-    "title": "My Projects",
+    "title": "Featured Projects",
     "description": "Here are some of my recent projects. Each one showcases different skills and technologies.",
     "description_no_projects": "No projects found with the selected filter.",
     "btn_all": "View All Projects",

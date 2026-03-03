@@ -19,7 +19,7 @@ const AllProjects: React.FC = () => {
             {t('projects.title')}
           </h2>
           <div className="w-20 h-1 mx-auto mb-6 bg-blue-600 dark:bg-blue-400"></div>
-          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+          <p className="max-w-2xl mx-auto text-gray-800 dark:text-gray-300">
             {t('projects.description')}
           </p>
         </div>
@@ -70,7 +70,7 @@ const AllProjects: React.FC = () => {
                 <h3 className="mb-2 text-xl font-bold text-gray-800 dark:text-white">
                   {project.title}
                 </h3>
-                <p className="mb-4 text-gray-600 dark:text-gray-300">
+                <p className="mb-4 text-gray-800 dark:text-gray-300">
                   {t(project.description)}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
@@ -109,7 +109,7 @@ const AllProjects: React.FC = () => {
         </div>
         {filteredProjects.length === 0 && (
           <div className="py-12 text-center">
-            <p className="text-gray-600 dark:text-gray-400">No projects found with the selected filter.</p>
+            <p className="text-gray-800 dark:text-gray-800">No projects found with the selected filter.</p>
           </div>
         )}
       </div>

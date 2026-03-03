@@ -1,7 +1,8 @@
 import React from 'react';
-import { Briefcase, Calendar, MapPin } from 'lucide-react';
+import { Calendar, MapPin } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 
 interface Experience {
   id: number;
@@ -137,73 +138,118 @@ const Experience: React.FC = () => {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+  };
+
   return (
     <section
       id="experience"
-      className="py-20 transition-colors duration-300 bg-gray-50 dark:bg-gray-800"
+      className="py-20 transition-colors duration-300 bg-white lg:py-32 dark:bg-gray-950"
     >
       <div className="container px-4 mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
-            {t('experience.title')}
-          </h2>
-          <div className="w-20 h-1 mx-auto mb-6 bg-blue-600 dark:bg-blue-400"></div>
-          <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            {t('experience.subtitle')}
-          </p>
-        </div>
-
-        <div 
-          ref={ref as React.RefObject<HTMLDivElement>}
-          className="relative max-w-4xl mx-auto"
+        <motion.div
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Timeline line */}
-          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700 transform md:-translate-x-1/2"></div>
+          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
+            Experience
+          </h2>
+          <motion.div
+            className="w-20 h-1.5 mx-auto bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 rounded-full"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          />
+        </motion.div>
 
+        <motion.div 
+          ref={ref as React.RefObject<HTMLDivElement>}
+          className="max-w-4xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
           {experiences.map((exp, index) => (
-            <div
+            <motion.div
               key={exp.id}
-              className={`relative flex flex-col md:flex-row md:items-center mb-16 last:mb-0 transition-all duration-700 justify-between ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${index * 200}ms` }}
+              className="relative flex gap-8 mb-12 last:mb-0"
+              variants={itemVariants}
             >
-              {/* Timeline dot on the left for all screens */}
-              <div className="flex items-start w-full md:items-center md:w-auto">
-                <div className="relative left-0 z-10 flex items-center justify-center w-8 h-8 bg-blue-600 border-4 border-white rounded-full dark:bg-blue-400 dark:border-gray-800 md:left-0">
-                  <Briefcase size={15} className="text-white" />
-                </div>
-              </div>
+              {/* Timeline Line */}
+              {index < experiences.length  && (
+                <motion.div
+                  className="absolute z-10 w-1 left-6 top-20 bg-gradient-to-b from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
+                  initial={{ height: 0 }}
+                  whileInView={{ height: '6rem' }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                />
+              )}
 
-              {/* Content always on the right */}
-              <div className="ml-8 md:w-full md:mt-0 md:ml-4">
-                <div className="p-6 transition-all duration-300 bg-white rounded-lg shadow-md dark:bg-gray-900 hover:shadow-lg">
-                  <h3 className="mb-1 text-xl font-bold text-gray-800 dark:text-white">
-                    {exp.title[i18n.language as 'en' | 'vi']}
-                  </h3>
-                  <h4 className="mb-2 font-medium text-blue-600 dark:text-blue-400">
-                    {exp.company[i18n.language as 'en' | 'vi']}
-                  </h4>
-                  <div className="flex flex-wrap gap-3 mb-4 text-sm text-gray-600 dark:text-gray-400">
-                    <div className="flex items-center">
-                      <MapPin size={14} className="mr-1" />
-                      {exp.location[i18n.language as 'en' | 'vi']}
-                    </div>
-                    <div className="flex items-center">
-                      <Calendar size={14} className="mr-1" />
-                      {exp.date}
-                    </div>
+              {/* Timeline Dot */}
+              <motion.div
+                className="relative flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full shadow-lg bg-gradient-to-br from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
+                whileHover={{ scale: 1.15 }}
+              >
+                <div className="w-4 h-4 bg-white rounded-full" />
+              </motion.div>
+
+              {/* Content Card */}
+              <motion.div
+                className="flex-grow p-6 transition-all duration-300 border border-blue-100 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500"
+                whileHover={{ y: -5, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+              >
+                <div className="flex flex-col gap-2 mb-4 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                      {exp.title[i18n.language as 'en' | 'vi']}
+                    </h3>
+                    <p className="font-semibold text-blue-600 dark:text-blue-400">
+                      {exp.company[i18n.language as 'en' | 'vi']}
+                    </p>
                   </div>
-                  <ul className="space-y-2 text-gray-600 list-disc list-inside dark:text-gray-300">
-                    {exp.description.map((item, i) => (
-                      <li key={i}>{item[i18n.language as 'en' | 'vi']}</li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
-            </div>
+
+                <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-800 dark:text-gray-800">
+                  <div className="flex items-center gap-1">
+                    <MapPin size={16} />
+                    {exp.location[i18n.language as 'en' | 'vi']}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Calendar size={16} />
+                    {exp.date}
+                  </div>
+                </div>
+
+                <ul className="space-y-2">
+                  {exp.description.map((item, i) => (
+                    <motion.li
+                      key={i}
+                      className="flex gap-3 text-gray-700 dark:text-gray-300"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 * i }}
+                    >
+                      <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-blue-600 dark:bg-blue-400" />
+                      {item[i18n.language as 'en' | 'vi']}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

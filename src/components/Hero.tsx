@@ -22,8 +22,8 @@ const Hero: React.FC = () => {
             <span className="text-blue-600 dark:text-blue-400">Nguyễn Sinh Hùng</span>
           </h1>
 
-          <h2 className="max-w-3xl mx-auto mb-8 text-xl text-gray-600 md:text-2xl lg:text-3xl dark:text-gray-300">
-            {t('hero.description1')}<span className="font-semibold text-purple-600 dark:text-purple-400"> Frontend Developer</span> {t('hero.description2')}
+          <h2 className="max-w-3xl mx-auto mb-8 text-xl text-gray-800 md:text-2xl lg:text-3xl dark:text-gray-300">
+            {t('hero.description1')}<span className="font-semibold text-purple-600 dark:text-purple-400"> Frontend Developer & UI/UX Designer</span> {t('hero.description2')}
           </h2>
 
           <div className="flex flex-col justify-center gap-4 mt-8 sm:flex-row">
@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
         <div className={`absolute bottom-10 left-1/2 transform -translate-x-1/2 transition-all duration-700 delay-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <a
             href="#about"
-            className="flex flex-col items-center text-gray-500 transition-colors duration-300 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+            className="flex flex-col items-center text-gray-500 transition-colors duration-300 dark:text-gray-800 hover:text-blue-600 dark:hover:text-blue-400"
             aria-label="Scroll to About section"
           >
             <span className="mb-2 text-sm">{t('hero.btn_down')}</span>
