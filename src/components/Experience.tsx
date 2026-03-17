@@ -164,7 +164,7 @@ const Experience: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
-            Experience
+            {t('experience.title')}
           </h2>
           <motion.div
             className="w-20 h-1.5 mx-auto bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 rounded-full"
@@ -221,7 +221,7 @@ const Experience: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-800 dark:text-gray-800">
+                <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-800 dark:text-white">
                   <div className="flex items-center gap-1">
                     <MapPin size={16} />
                     {exp.location[i18n.language as 'en' | 'vi']}

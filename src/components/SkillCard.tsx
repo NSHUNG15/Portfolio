@@ -47,7 +47,7 @@ const SkillCard: React.FC<SkillCardProps> = ({
                 transition={{ duration: 1.5, delay: 0.3, ease: 'easeOut' }}
               />
             </div>
-            <p className="text-xs text-gray-800 dark:text-gray-800">{level}% Proficiency</p>
+            <p className="text-xs text-gray-800 dark:text-white">{level}% Proficiency</p>
           </div>
         </div>
       </div>

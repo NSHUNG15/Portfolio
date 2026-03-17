@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
-            Get In Touch
+            {t('contact.get_in_touch')}
           </h2>
           <motion.div
             className="w-20 h-1.5 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 rounded-full"

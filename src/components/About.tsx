@@ -1,7 +1,7 @@
 import React from 'react';
-import { Mail, MapPin, FileText, Github, Facebook, Download } from 'lucide-react';
+import { Mail, MapPin, Github, Facebook, Download } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
-import avatar from '../img/avatar.jpg';
+import avatar from '../image/avatar.jpg';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 
@@ -37,7 +37,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
-            About Me
+            {t('about.title')}
           </h2>
           <motion.div
             className="w-20 h-1.5 mx-auto bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 rounded-full"
@@ -122,7 +122,7 @@ const About: React.FC = () => {
 
             {/* Skills Tags */}
             <motion.div variants={itemVariants} className="space-y-3">
-              <p className="font-semibold text-gray-900 dark:text-white">Key Skills</p>
+              <p className="font-semibold text-gray-900 dark:text-white">{t('about.skills')}</p>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill) => (
                   <motion.span
