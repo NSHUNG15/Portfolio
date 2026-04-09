@@ -39,7 +39,7 @@ export const projects: ProjectData[] = [
     tags: ['React', 'Tailwind CSS', 'Framer Motion'],
     demoUrl: 'https://portfolio-nsh.vercel.app',
     githubUrl: '#',
-    featured: false,
+    featured: true,
   },
   {
     id: 4,
@@ -60,5 +60,15 @@ export const projects: ProjectData[] = [
     demoUrl: 'https://number-click-game.vercel.app',
     githubUrl: '#',
     featured: false,
+  },
+  {
+    id: 6,
+    title: 'W3 TaskChain',
+    description: 'projects.projectDescriptions.6',
+    image: 'https://images.pexels.com/photos/15964399/pexels-photo-15964399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'MongoDB'],
+    demoUrl: 'https://todolist-fe-sigma.vercel.app',
+    githubUrl: '#',
+    featured: true,
   },
 ];

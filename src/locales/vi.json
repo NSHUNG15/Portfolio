@@ -33,7 +33,8 @@
       "2": "Một trang web đặt chỗ du lịch cho phép người dùng tìm kiếm chuyến bay, khách sạn và cho thuê xe. Các tính năng bao gồm thiết kế đáp ứng, xác thực người dùng và giao diện hiện đại.",
       "3": "Một mẫu trang web portfolio đáp ứng cho các nhà phát triển, được xây dựng với các nguyên tắc thiết kế hiện đại và hoạt ảnh.",
       "4": "Nền tảng theo dõi thể thao được xây dựng bằng HTML, CSS và JavaScript, Node.js và MongoDB. Các tính năng bao gồm hiển thị, tạo, xóa, chỉnh sửa các cặp đấu của các môn thể thao và theo dõi các đội thi đấu, với giao diện đáp ứng để quản lý dễ dàng.",
-      "5": "Một trò chơi nhấp chuột số vui nhộn và tương tác được xây dựng bằng React. Mục tiêu là nhấp vào các số theo thứ tự càng nhanh càng tốt. Nó bao gồm theo dõi điểm số, bộ đếm thời gian, chế độ tự động phát và thiết kế đáp ứng cho cả máy tính để bàn và thiết bị di động."
+      "5": "Một trò chơi nhấp chuột số vui nhộn và tương tác được xây dựng bằng React. Mục tiêu là nhấp vào các số theo thứ tự càng nhanh càng tốt. Nó bao gồm theo dõi điểm số, bộ đếm thời gian, chế độ tự động phát và thiết kế đáp ứng cho cả máy tính để bàn và thiết bị di động.",
+      "6": "Một ứng dụng quản lý công việc ghi chú toàn diện được xây dựng bằng React, TypeScript, Tailwind CSS và MongoDB. Ứng dụng cho phép người dùng tạo, chỉnh sửa và xóa tác vụ, theo dõi trạng thái (đang hoạt động/đã hoàn thành) và quản lý danh sách tác vụ một cách hiệu quả. Ứng dụng có giao diện người dùng sạch sẽ, đáp ứng tốt trên nhiều thiết bị và được triển khai trên nền tảng Vercel để đảm bảo hiệu suất nhanh chóng."
     }
   },
   "experience": {
