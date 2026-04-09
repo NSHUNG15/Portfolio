@@ -56,7 +56,7 @@ const About: React.FC = () => {
         >
           {/* Image Section */}
           <motion.div 
-            className="relative group"
+            className="relative overflow-hidden group"
             variants={itemVariants}
           >
             <motion.div
@@ -73,11 +73,11 @@ const About: React.FC = () => {
             </motion.div>
             
             {/* Decorative element */}
-            <motion.div
-              className="absolute w-40 h-40 border-2 -bottom-6 -right-6 border-blue-600/30 dark:border-blue-400/30 rounded-2xl -z-10"
-              animate={{ rotate: 5 }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            />
+              <motion.div
+                className="absolute z-10 w-40 h-40 border-4 -bottom-8 -right-6 border-blue-600/30 dark:border-blue-400/30 rounded-2xl"
+                animate={{ rotate: 360*15 }}
+                transition={{ duration: 80, repeat: Infinity, ease: 'easeInOut' }}
+              />
           </motion.div>
 
           {/* Content Section */}
