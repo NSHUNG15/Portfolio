@@ -73,7 +73,7 @@ const Skills: React.FC = () => {
         { name: 'Figma',           level: 90, Icon: SiFigma,            gradient: 'from-pink-400 to-purple-500' },
         { name: 'Canva',           level: 70, Icon: SiCanva,            gradient: 'from-cyan-400 to-blue-500' },
         { name: 'Sketch',          level: 55, Icon: SiSketch,           gradient: 'from-yellow-400 to-orange-400' },
-        { name: 'Notion',          level: 80, Icon: SiNotion,           gradient: 'from-gray-500 to-gray-800' },
+        { name: 'Notion',          level: 60, Icon: SiNotion,           gradient: 'from-gray-500 to-gray-800' },
       ],
     },
   ];
