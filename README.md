@@ -29,7 +29,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 ### Prerequisites
 
 - Node.js 16.x or later
-- npm or yarn
+- pnpm
 
 ### Installation
 
@@ -41,12 +41,12 @@ cd portfolio
 
 2. Install dependencies:
 ```bash
-npm install
+pnpm install
 ```
 
 3. Start the development server:
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 4. Open [http://localhost:5173](http://localhost:5173) in your browser
@@ -54,7 +54,7 @@ npm run dev
 ### Building for Production
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 The build files will be in the `dist` directory.

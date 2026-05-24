@@ -15,12 +15,11 @@ const Hero: React.FC = () => {
   };
 
   const textRevealVariants: Variants = {
-    hidden: { opacity: 0, y: 50, filter: 'blur(10px)' },
+    hidden: { opacity: 0, y: 50 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      filter: 'blur(0px)',
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } // Custom cubic-bezier for snappy spring-like reveal
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
     },
   };
 
@@ -36,7 +35,7 @@ const Hero: React.FC = () => {
   return (
     <section 
       id="home" 
-      className="relative flex items-center justify-center min-h-screen pt-12 transition-colors duration-300 bg-gray-50 dark:bg-gray-950 overflow-hidden"
+      className="relative flex items-center justify-center min-h-screen pt-12 overflow-hidden transition-colors duration-300 bg-gray-50 dark:bg-gray-950"
     >
       {/* Animated Mesh Gradient Background (Modern Glassmorphism vibe) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -47,6 +46,7 @@ const Hero: React.FC = () => {
             rotate: [0, 90, 0]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          style={{ willChange: 'transform, opacity' }}
           className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-400/30 dark:bg-blue-600/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen"
         />
         <motion.div 
@@ -56,6 +56,7 @@ const Hero: React.FC = () => {
             rotate: [0, -90, 0]
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          style={{ willChange: 'transform, opacity' }}
           className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-purple-400/30 dark:bg-purple-600/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen"
         />
         <motion.div 
@@ -64,6 +65,7 @@ const Hero: React.FC = () => {
             opacity: [0.3, 0.5, 0.3]
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: 'transform, opacity' }}
           className="absolute top-[30%] left-[30%] w-[40%] h-[40%] bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen"
         />
         {/* Subtle grid pattern overlay */}
@@ -80,7 +82,7 @@ const Hero: React.FC = () => {
       >
         {/* Modern Badge */}
         <motion.div variants={textRevealVariants} className="mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border rounded-full bg-white/50 dark:bg-gray-900/50 backdrop-blur-md text-blue-600 dark:text-blue-400 border-blue-200/50 dark:border-blue-900/50 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 border rounded-full shadow-sm bg-white/50 dark:bg-gray-900/50 backdrop-blur-md dark:text-blue-400 border-blue-200/50 dark:border-blue-900/50">
             <Sparkles size={16} className="animate-pulse" />
             <span>Available for new projects</span>
           </div>
@@ -93,7 +95,7 @@ const Hero: React.FC = () => {
             className="text-5xl font-extrabold tracking-tight text-gray-900 md:text-7xl lg:text-8xl dark:text-white"
           >
             <span className="block mb-2">{t('hero.greeting')}</span>
-            <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-x">
+            <span className="relative inline-block text-transparent h-[7rem] bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient-x">
               Nguyễn Sinh Hùng
             </span>
           </motion.h1>
@@ -101,7 +103,7 @@ const Hero: React.FC = () => {
 
         <motion.p 
           variants={textRevealVariants}
-          className="max-w-2xl mx-auto mb-12 text-lg text-gray-600 md:text-xl lg:text-2xl dark:text-gray-400 leading-relaxed"
+          className="max-w-2xl mx-auto mb-12 text-lg leading-relaxed text-gray-600 md:text-xl lg:text-2xl dark:text-gray-400"
         >
           {t('hero.description1')}
           <span className="font-semibold text-gray-900 dark:text-gray-200"> Frontend Developer & UI/UX Designer </span> 
@@ -142,7 +144,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="absolute left-1/2 transform -translate-x-1/2 -bottom-24"
+          className="absolute transform -translate-x-1/2 left-1/2 -bottom-24"
         >
           <a
             href="#about"

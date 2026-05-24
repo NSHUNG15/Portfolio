@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const scrollFrame = React.useRef<number | null>(null);
   const { theme, toggleTheme } = useTheme();
   const { t, i18n } = useTranslation();
   const location = useLocation();
@@ -24,11 +25,20 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (scrollFrame.current !== null) return;
+      scrollFrame.current = window.requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 10);
+        scrollFrame.current = null;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      if (scrollFrame.current !== null) {
+        window.cancelAnimationFrame(scrollFrame.current);
+      }
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const handleNavClick = (id: string) => {

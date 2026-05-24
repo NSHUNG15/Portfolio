@@ -16,11 +16,20 @@ const SkillCard: React.FC<SkillCardProps> = ({
 }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const rafRef = React.useRef<number | null>(null);
 
   function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
+    const x = clientX;
+    const y = clientY;
+    const target = currentTarget;
+
+    if (rafRef.current !== null) return;
+    rafRef.current = window.requestAnimationFrame(() => {
+      const { left, top } = target.getBoundingClientRect();
+      mouseX.set(x - left);
+      mouseY.set(y - top);
+      rafRef.current = null;
+    });
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTheme } from '../context/theme';
 
 interface Snowflake {
@@ -26,10 +26,10 @@ const SnowflakeCursor: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    if (
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-      window.matchMedia('(pointer: coarse)').matches
-    ) {
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const pointerCoarse = window.matchMedia('(pointer: coarse)').matches;
+    if (prefersReducedMotion || pointerCoarse) {
       return;
     }
 
@@ -38,38 +38,46 @@ const SnowflakeCursor: React.FC = () => {
 
     let width = window.innerWidth;
     let height = window.innerHeight;
+    let dpr = Math.max(window.devicePixelRatio || 1, 1);
 
     const setCanvasSize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
+      dpr = Math.max(window.devicePixelRatio || 1, 1);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      const currentCtx = canvas.getContext('2d');
+      if (currentCtx) {
+        currentCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
     };
 
     setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
+    window.addEventListener('resize', setCanvasSize, { passive: true });
 
     let isAnimating = false;
 
     const createSnowflake = (x: number, y: number) => {
       // Limit number of snowflakes for performance
-      if (snowflakes.current.length > 36) return;
+      if (snowflakes.current.length >= 48) return;
 
-      const radius = Math.random() * 2 + 1; // 1 to 3px
+      const radius = Math.random() * 2.5 + 1.2; // 1.2 to 3.7px
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 1.5 + 0.5;
+      const speed = Math.random() * 1.2 + 0.7;
       
       snowflakes.current.push({
-        x: x + (Math.random() - 0.5) * 10,
-        y: y + (Math.random() - 0.5) * 10,
+        x: x + (Math.random() - 0.5) * 12,
+        y: y + (Math.random() - 0.5) * 12,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed + 0.5, // slight downward drift
+        vy: Math.sin(angle) * speed + 0.6, // slight downward drift
         radius,
         alpha: 1,
         life: 0,
-        maxLife: Math.random() * 30 + 30, // 30 to 60 frames
+        maxLife: Math.random() * 40 + 35, // 35 to 75 frames
         angle: Math.random() * Math.PI * 2,
-        spin: (Math.random() - 0.5) * 0.2
+        spin: (Math.random() - 0.5) * 0.18
       });
 
       if (!isAnimating) {
@@ -79,14 +87,16 @@ const SnowflakeCursor: React.FC = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouse.current.x = e.clientX;
-      mouse.current.y = e.clientY;
-      mouse.current.isMoving = true;
-
+      const x = e.clientX;
+      const y = e.clientY;
       const now = performance.now();
+
       if (now - lastSpawnRef.current < 24) return;
       lastSpawnRef.current = now;
-      createSnowflake(e.clientX, e.clientY);
+      mouse.current.x = x;
+      mouse.current.y = y;
+      mouse.current.isMoving = true;
+      createSnowflake(x, y);
 
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -96,26 +106,26 @@ const SnowflakeCursor: React.FC = () => {
       }, 50);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     const drawSnowflake = (ctx: CanvasRenderingContext2D, s: Snowflake) => {
       ctx.save();
       ctx.translate(s.x, s.y);
       ctx.rotate(s.angle);
-      
+      ctx.globalCompositeOperation = 'lighter';
+
       ctx.beginPath();
       ctx.arc(0, 0, s.radius, 0, Math.PI * 2);
       ctx.fillStyle = theme === 'dark' 
-        ? `rgba(167, 203, 255, ${s.alpha})` // Light blue glow for dark mode
-        : `rgba(130, 175, 255, ${s.alpha * 0.8})`; // Pastel blue for light mode
+        ? `rgba(200, 225, 255, ${s.alpha})` // Brighter on dark mode
+        : `rgba(66, 153, 225, ${Math.min(s.alpha * 1.2, 1)})`; // More visible on light mode
       ctx.fill();
       
-      // Draw a subtle cross for snowflake shape if radius is large enough
       if (s.radius > 1.5) {
         ctx.strokeStyle = theme === 'dark'
-          ? `rgba(255, 255, 255, ${s.alpha * 0.8})`
-          : `rgba(100, 150, 255, ${s.alpha * 0.6})`;
-        ctx.lineWidth = 0.5;
+          ? `rgba(255, 255, 255, ${Math.min(s.alpha, 0.9)})`
+          : `rgba(59, 130, 246, ${Math.min(s.alpha, 0.8)})`;
+        ctx.lineWidth = 0.6;
         
         ctx.beginPath();
         ctx.moveTo(-s.radius * 1.5, 0);
@@ -125,16 +135,6 @@ const SnowflakeCursor: React.FC = () => {
         ctx.beginPath();
         ctx.moveTo(0, -s.radius * 1.5);
         ctx.lineTo(0, s.radius * 1.5);
-        ctx.stroke();
-        
-        ctx.beginPath();
-        ctx.moveTo(-s.radius, -s.radius);
-        ctx.lineTo(s.radius, s.radius);
-        ctx.stroke();
-        
-        ctx.beginPath();
-        ctx.moveTo(-s.radius, s.radius);
-        ctx.lineTo(s.radius, -s.radius);
         ctx.stroke();
       }
 
@@ -154,7 +154,8 @@ const SnowflakeCursor: React.FC = () => {
         p.vy += 0.02; // gravity
         p.angle += p.spin;
 
-        if (p.alpha <= 0 || p.life >= p.maxLife) {
+        const outOfBounds = p.x < -50 || p.x > width + 50 || p.y > height + 50;
+        if (p.alpha <= 0 || p.life >= p.maxLife || outOfBounds) {
           snowflakes.current.splice(i, 1);
         } else {
           drawSnowflake(ctx, p);
