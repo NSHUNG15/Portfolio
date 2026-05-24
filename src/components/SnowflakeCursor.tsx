@@ -27,11 +27,12 @@ const SnowflakeCursor: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const pointerCoarse = window.matchMedia('(pointer: coarse)').matches;
-    if (prefersReducedMotion || pointerCoarse) {
-      return;
-    }
+    // const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // const pointerCoarse = window.matchMedia('(pointer: coarse)').matches;
+    // if (prefersReducedMotion || pointerCoarse) {
+    //   canvas.style.display = 'none';
+    //   return;
+    // }
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;

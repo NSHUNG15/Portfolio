@@ -20,3 +20,17 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+  * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+  .motion-safe * {
+    animation: inherit;
+  }
+}
+canvas.fixed.inset-0 {
+  z-index: 9999 !important;
+  pointer-events: none !important;
+  mix-blend-mode: screen;
+  opacity: 1 !important;
+}
