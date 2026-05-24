@@ -1,7 +1,6 @@
 import React from 'react';
-import { useInView } from '../hooks/useInView';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 // Code icons
 import {
@@ -44,8 +43,20 @@ interface SkillGroup {
 }
 
 const Skills: React.FC = () => {
-  const { ref, inView } = useInView({ threshold: 0.1 });
   const { t } = useTranslation();
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
 
   const skillGroups: SkillGroup[] = [
     {
@@ -81,61 +92,59 @@ const Skills: React.FC = () => {
   return (
     <section
       id="skills"
-      className="py-20 transition-colors duration-300 bg-white lg:py-32 dark:bg-gray-950"
+      className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-950 relative overflow-hidden"
     >
       <div className="container px-4 mx-auto">
         {/* Section Header */}
         <motion.div
-          className="mb-16 text-center"
+          className="mb-20 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
+          <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 md:text-5xl dark:text-white mb-4">
             {t('skills.title')}
+            <span className="text-blue-600 dark:text-blue-400">.</span>
           </h2>
-          <motion.div
-            className="w-20 h-1.5 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 rounded-full"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          />
-          <p className="max-w-2xl mx-auto text-gray-800 dark:text-white">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             {t('skills.description')}
           </p>
         </motion.div>
 
         {/* Skill Groups */}
-        <div
-          ref={ref as React.RefObject<HTMLDivElement>}
-          className={`transition-all duration-700 space-y-16 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          {skillGroups.map((group, groupIndex) => (
-            <div key={group.groupKey}>
+        <div className="space-y-20">
+          {skillGroups.map((group) => (
+            <motion.div 
+              key={group.groupKey}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              className="relative"
+            >
+              {/* Decorative background text */}
+              <div className="absolute -top-10 -left-4 md:-left-10 text-[6rem] md:text-[8rem] font-black text-gray-200/50 dark:text-gray-800/30 -z-10 pointer-events-none select-none tracking-tighter uppercase">
+                {group.groupKey}
+              </div>
+
               {/* Group Label */}
               <motion.h3
-                className="flex items-center gap-3 mb-8 text-xl font-semibold text-gray-700 dark:text-gray-300"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: groupIndex * 0.1 }}
+                variants={itemVariants}
+                className="inline-flex items-center gap-3 mb-10 px-6 py-3 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm"
               >
-                <span className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full inline-block" />
-                {t(`skills.group.${group.groupKey}`, {
-                  defaultValue: group.groupKey === 'code' ? '💻 Development' : '🎨 Design',
-                })}
+                <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                <span className="text-xl font-bold text-gray-900 dark:text-white">
+                  {t(`skills.group.${group.groupKey}`, {
+                    defaultValue: group.groupKey === 'code' ? 'Development Tools' : 'Design & Productivity',
+                  })}
+                </span>
               </motion.h3>
 
               {/* Grid */}
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
-                {group.skills.map((skill, index) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.04 }}
-                  >
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 relative z-10">
+                {group.skills.map((skill) => (
+                  <motion.div key={skill.name} variants={itemVariants}>
                     <SkillCard
                       name={skill.name}
                       level={skill.level}
@@ -145,7 +154,7 @@ const Skills: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

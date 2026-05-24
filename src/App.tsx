@@ -8,6 +8,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AllProjects from './pages/AllProjects';
+import SnowflakeCursor from './components/SnowflakeCursor';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <ThemeProvider>
       <Router>
         <div className="min-h-screen text-gray-900 transition-colors duration-300 bg-white dark:bg-gray-900 dark:text-white">
+          <SnowflakeCursor />
           <Header />
           <main>
             <Routes>

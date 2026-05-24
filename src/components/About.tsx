@@ -68,6 +68,8 @@ const About: React.FC = () => {
               <img 
                 src={avatar} 
                 alt="Profile" 
+                loading="lazy"
+                decoding="async"
                 className="object-cover w-full h-full" 
               />
             </motion.div>
