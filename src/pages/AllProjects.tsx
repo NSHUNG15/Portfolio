@@ -106,7 +106,8 @@ const AllProjects: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
@@ -115,6 +116,8 @@ const AllProjects: React.FC = () => {
                 className="group relative h-[400px] w-full rounded-3xl overflow-hidden bg-gray-200 dark:bg-gray-800 isolate"
                 variants={itemVariants}
                 layout
+                whileHover={{ scale: 1.07, boxShadow: "0px 14px 30px rgba(0,0,0,0.25)" }}
+                transition={{ type: "spring", stiffness: 180 }}
               >
                 {/* Background Image with Parallax-like Zoom */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -123,7 +126,7 @@ const AllProjects: React.FC = () => {
                     alt={project.title}
                     loading="lazy"
                     decoding="async"
-                    className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
+                    className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-115"
                   />
                 </div>
                 
@@ -136,7 +139,7 @@ const AllProjects: React.FC = () => {
                     <h3 className="text-2xl font-bold text-white mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-gray-300 line-clamp-2 text-sm transition-opacity duration-500 opacity-0 group-hover:opacity-100">
+                    <p className="text-gray-300 line-clamp-2 text-sm transition-all duration-500 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
                       {t(project.description)}
                     </p>
                   </div>

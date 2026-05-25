@@ -103,13 +103,15 @@ const Projects: React.FC = () => {
                 className="group relative h-[450px] md:h-[500px] w-full rounded-3xl overflow-hidden bg-gray-200 dark:bg-gray-800 isolate"
                 variants={itemVariants}
                 layout
+                whileHover={{ scale: 1.07, boxShadow: "0px 14px 30px rgba(0,0,0,0.25)" }}
+                transition={{ type: "spring", stiffness: 180 }}
               >
                 {/* Background Image with Parallax-like Zoom */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img
                     src={`https://api.microlink.io/?url=${project.demoUrl}&screenshot=true&embed=screenshot.url`}
                     alt={project.title}
-                    className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-110"
+                    className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-115"
                   />
                 </div>
                 
@@ -132,7 +134,7 @@ const Projects: React.FC = () => {
                     <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-gray-300 line-clamp-2 text-sm md:text-base transition-opacity duration-500 opacity-0 group-hover:opacity-100">
+                    <p className="text-gray-300 line-clamp-2 text-sm transition-all duration-500 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
                       {t(project.description)}
                     </p>
                   </div>
